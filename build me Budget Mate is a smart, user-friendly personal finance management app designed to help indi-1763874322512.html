@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Mate - Personal Finance Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .animate-slide-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">BM</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">Budget Mate</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('features')" class="text-gray-700 hover:text-purple-600 transition">Features</button>
+                    <button onclick="scrollToSection('benefits')" class="text-gray-700 hover:text-purple-600 transition">Benefits</button>
+                    <button onclick="scrollToSection('demo')" class="text-gray-700 hover:text-purple-600 transition">Demo</button>
+                    <button onclick="scrollToSection('audience')" class="text-gray-700 hover:text-purple-600 transition">For Whom</button>
+                </div>
+                <button onclick="showSection('dashboard')" class="gradient-bg text-white px-6 py-2 rounded-lg hover:shadow-lg transition">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="gradient-bg text-white py-20 px-4">
+        <div class="max-w-7xl mx-auto text-center animate-fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Take Control of Your Finances</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Budget Mate: Your Smart Personal Finance Companion</p>
+            <p class="text-lg mb-8 max-w-2xl mx-auto opacity-80">Track income, manage expenses, build savings goals, and achieve financial stability with ease.</p>
+            <button onclick="showSection('dashboard')" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg hover:shadow-lg transition">Start Your Journey</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">What Budget Mate Does</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl border border-blue-200">
+                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Track Income & Expenses</h3>
+                    <p class="text-gray-700">Automatically or manually record daily spending. Categorize expenses and view where your money is going at any time.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl border border-green-200">
+                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">💰</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Create & Manage Budgets</h3>
+                    <p class="text-gray-700">Set monthly, weekly, or custom budgets. Receive alerts when spending approaches limits and compare planned vs. actual spending.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl border border-purple-200">
+                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Build Savings Goals</h3>
+                    <p class="text-gray-700">Create goals for emergency funds, travel, or debt repayment. Monitor progress with visual indicators and smart suggestions.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-xl border border-orange-200">
+                    <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">📈</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Financial Insights</h3>
+                    <p class="text-gray-700">Get charts, summaries, and spending patterns. Identify overspending areas and receive personalized recommendations.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="card-hover bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl border border-red-200">
+                    <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">🔔</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Bill Reminders</h3>
+                    <p class="text-gray-700">Get reminded of upcoming due dates. Avoid penalties and late fees with timely notifications.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="card-hover bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-xl border border-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-2xl">🔒</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Secure & Mobile-Friendly</h3>
+                    <p class="text-gray-700">Your data is securely stored. Fully optimized for phones to manage finances anytime, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Why Budget Mate Is Useful</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-8 text-gray-800">Common Financial Struggles</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✗</span>
+                            </div>
+                            <p class="text-gray-700">Don't track daily expenses</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✗</span>
+                            </div>
+                            <p class="text-gray-700">Forget important bills</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✗</span>
+                            </div>
+                            <p class="text-gray-700">Spend more than they realize</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✗</span>
+                            </div>
+                            <p class="text-gray-700">Lack a system to plan for future costs</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-8 text-gray-800">Budget Mate Solutions</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✓</span>
+                            </div>
+                            <p class="text-gray-700"><span class="font-bold">Simple</span> – Easy to use even for beginners</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✓</span>
+                            </div>
+                            <p class="text-gray-700"><span class="font-bold">Visual</span> – Graphs and charts show financial status immediately</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✓</span>
+                            </div>
+                            <p class="text-gray-700"><span class="font-bold">Smart</span> – Gives insights and suggestions</p>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">✓</span>
+                            </div>
+                            <p class="text-gray-700"><span class="font-bold">Supportive</span> – Helps you stay disciplined and motivated</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section id="audience" class="py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Budget Mate Is For You If</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">👨‍🎓</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Students</h3>
+                    <p class="text-gray-700">Learning money management and building good financial habits from the start.</p>
+                </div>
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">👩‍👧‍👦</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Single Parents</h3>
+                    <p class="text-gray-700">Balancing multiple expenses and making every dollar count.</p>
+                </div>
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">💼</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Employees</h3>
+                    <p class="text-gray-700">Managing regular or irregular income with confidence.</p>
+                </div>
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Freelancers</h3>
+                    <p class="text-gray-700">Tracking variable income and maintaining financial stability.</p>
+                </div>
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Goal Setters</h3>
+                    <p class="text-gray-700">Anyone wanting to save more and avoid financial stress.</p>
+                </div>
+                <div class="card-hover bg-white border-2 border-purple-200 p-8 rounded-xl">
+                    <div class="text-4xl mb-4">💡</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Everyone</h3>
+                    <p class="text-gray-700">Anyone seeking financial clarity, control, and peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 px-4 bg-gray-100">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Try Budget Mate Dashboard</h2>
+            <button onclick="showSection('dashboard')" class="block mx-auto gradient-bg text-white px-8 py-3 rounded-lg font-bold text-lg hover:shadow-lg transition mb-8">
+                Open Dashboard
+            </button>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-6">
+                    <h3 class="text-2xl font-bold">Dashboard Preview</h3>
+                </div>
+                <div class="p-8">
+                    <p class="text-gray-600 text-center text-lg">Click "Open Dashboard" above to explore the interactive Budget Mate dashboard with expense tracking, budget management, and financial insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section (Hidden by default) -->
+    <section id="dashboard" class="hidden py-20 px-4 bg-gray-100 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showSection('hero')" class="mb-6 bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">← Back to Home</button>
+            
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <!-- Summary Cards -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <p class="text-gray-600 text-sm mb-2">Total Income</p>
+                    <h3 class="text-3xl font-bold text-green-600">$5,500</h3>
+                    <p class="text-gray-500 text-xs mt-2">This month</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <p class="text-gray-600 text-sm mb-2">Total Expenses</p>
+                    <h3 class="text-3xl font-bold text-red-600">$2,850</h3>
+                    <p class="text-gray-500 text-xs mt-2">This month</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <p class="text-gray-600 text-sm mb-2">Budget Remaining</p>
+                    <h3 class="text-3xl font-bold text-blue-600">$2,650</h3>
+                    <p class="text-gray-500 text-xs mt-2">Available to spend</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <p class="text-gray-600 text-sm mb-2">Savings Goals</p>
+                    <h3 class="text-3xl font-bold text-purple-600">$8,200</h3>
+                    <p class="text-gray-500 text-xs mt-2">Total saved</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <!-- Expense Chart -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-6 text-gray-800">Expense Breakdown</h3>
+                    <canvas id="expenseChart"></canvas>
+                </div>
+
+                <!-- Budget vs Actual -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-6 text-gray-800">Budget vs Actual</h3>
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Savings Goals -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold mb-6 text-gray-800">Savings Goals Progress</h3>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-gray-700">Emergency Fund</span>
+                            <span class="text-sm text-gray-600">$4,500 / $5,000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-green-500 h-3 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-gray-700">Vacation Fund</span>
+                            <span class="text-sm text-gray-600">$2,100 / $3,500</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-blue-500 h-3 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-gray-700">New Laptop</span>
+                            <span class="text-sm text-gray-600">$1,600 / $2,000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-purple-500 h-3 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-6 text-gray-800">Recent Transactions</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b-2 border-gray-200">
+                                <th class="text-left py-3 text-gray-700">Date</th>
+                                <th class="text-left py-3 text-gray-700">Description</th>
+                                <th class="text-left py-3 text-gray-700">Category</th>
+                                <th class="text-right py-3 text-gray-700">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3">Dec 15</td>
+                                <td class="py-3">Grocery Shopping</td>
+                                <td class="py-3"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Food</span></td>
+                                <td class="text-right text-red-600 font-semibold">-$120</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3">Dec 14</td>
+                                <td class="py-3">Salary Deposit</td>
+                                <td class="py-3"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Income</span></td>
+                                <td class="text-right text-green-600 font-semibold">+$5,500</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3">Dec 13</td>
+                                <td class="py-3">Electric Bill</td>
+                                <td class="py-3"><span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Bills</span></td>
+                                <td class="text-right text-red-600 font-semibold">-$85</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3">Dec 12</td>
+                                <td class="py-3">Gas Station</td>
+                                <td class="py-3"><span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Transport</span></td>
+                                <td class="text-right text-red-600 font-semibold">-$45</td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3">Dec 11</td>
+                                <td class="py-3">Gym Membership</td>
+                                <td class="py-3"><span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Health</span></td>
+                                <td class="text-right text-red-600 font-semibold">-$50</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3">Dec 10</td>
+                                <td class="py-3">Freelance Project</td>
+                                <td class="py-3"><span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Income</span></td>
+                                <td class="text-right text-green-600 font-semibold">+$800</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('hero').classList.add('hidden');
+            document.getElementById('features').classList.add('hidden');
+            document.getElementById('benefits').classList.add('hidden');
+            document.getElementById('audience').classList.add('hidden');
+            document.getElementById('demo').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            // Initialize charts if dashboard is shown
+            if (sectionId === 'dashboard') {
+                setTimeout(initializeCharts, 100);
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById('hero').classList.add('hidden');
+            document.getElementById('features').classList.add('hidden');
+            document.getElementById('benefits').classList.add('hidden');
+            document.getElementById('audience').classList.add('hidden');
+            document.getElementById('demo').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initializeCharts() {
+            // Expense Chart
+            const expenseCtx = document.getElementById('expenseChart');
+            if (expenseCtx && !expenseCtx.chart) {
+                expenseCtx.chart = new Chart(expenseCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Food', 'Bills', 'Transport', 'Health', 'Entertainment', 'Other'],
+                        datasets: [{
+                            data: [450, 800, 350, 200, 200, 200],
+                            backgroundColor: [
+                                '#10b981',
+                                '#f97316',
+                                '#eab308',
+                                '#ec4899',
+                                '#8b5cf6',
+                                '#6b7280'
+                            ],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Budget vs Actual Chart
+            const budgetCtx = document.getElementById('budgetChart');
+            if (budgetCtx && !budgetCtx.chart) {
+                budgetCtx.chart = new Chart(budgetCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Food', 'Bills', 'Transport', 'Health', 'Savings'],
+                        datasets: [
+                            {
+                                label: 'Budgeted',
+                                data: [500, 900, 400, 250, 1000],
+                                backgroundColor: '#a78bfa',
+                                borderRadius: 5
+                            },
+                            {
+                                label: 'Actual',
+                                data: [450, 800, 350, 200, 950],
+                                backgroundColor: '#60a5fa',
+                                borderRadius: 5
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
